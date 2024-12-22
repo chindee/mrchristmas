@@ -1,0 +1,477 @@
+html {
+    scroll-behavior: smooth; /* เปิดการเลื่อนสมูธ */
+}
+
+.section {
+    margin-top: 3em; /* ปรับระยะห่างระหว่าง section */
+    padding: 2em 1em; /* เพิ่มพื้นที่ให้ดูสวยงาม */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f9f9f9;
+    line-height: 1.8;
+}
+
+/* Video Background */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Header Styling */
+header {
+    background: rgba(211, 47, 47, 0.658);
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+    position: relative;
+    border-radius: 0 0 0px 0px; /* เพิ่มความโค้งที่ขอบล่าง */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header .logo {
+    max-width: 300px; /* กำหนดขนาดสูงสุดของโลโก้ */
+    height: auto; /* รักษาอัตราส่วนของรูป */
+    margin: 0 auto 0.5em; /* จัดให้อยู่ตรงกลางและเพิ่มระยะห่างด้านล่าง */
+    display: block;
+}
+
+header p {
+    font-size: 1.2rem;  
+    margin-top: 0.5em;
+    font-weight: 300;
+}
+
+.countdown {
+    margin-top: 0.5em;
+    padding: 0.5em 1em;
+    background:#0AAA4A;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    border-radius: 8px;
+    display: inline-block;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: center; /* จัดให้อยู่กึ่งกลาง */
+    align-items: center;
+    background: linear-gradient(90deg, #0C6F30, #0AAA4A);
+    background-size: 200% 200%;
+    animation: gradientMove 6s infinite;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1em 2em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 0px 0px;
+}
+
+nav.is-hidden {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    background: #000; /* พื้นหลังสีดำ */
+    display: none; /* ซ่อน nav */
+    width: 100%;
+    z-index: 1000;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between; /* กระจายพื้นที่ให้เท่ากัน */
+    align-items: center;
+    width: 75%; /* ปรับ ul ให้กว้างเท่ากับ nav */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    flex: 1; /* ให้แต่ละ li ใช้พื้นที่เท่ากัน */
+    text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง */
+    margin: 0;
+}
+
+nav a {
+    display: block; /* เพื่อให้ a ครอบคลุมพื้นที่ของ li */
+    width: 90%; /* ทำให้ปุ่มเต็มความกว้าง li */
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.8em 0; /* ปรับ padding */
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+nav a:hover {
+    background: #fff;
+    color: #0AAA4A;
+    transform: scale(1.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+nav a:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+#menu-toggle:hover {
+    transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+    nav {
+        justify-content: space-between;
+        padding: 1em 1.5em;
+    }
+
+    #menu {
+        display: none;
+        flex-direction: column;
+        background: #0C6F30;
+        padding: 1em;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 240px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 0 0 15px 15px;
+        gap: 0.1em;
+    }
+
+    #menu.show {
+        display: flex;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0.8em;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: 0.8em 1.2em;
+    }
+
+    #menu-toggle {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 0.2em;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        padding: 0.9em 1em;
+    }
+
+    nav ul {
+        gap: 0.5em;
+    }
+
+    #menu {
+        width: 100%;
+        padding: 1em;
+    }
+}
+/* Container and Section */
+.container {
+    max-width: 1200px;
+    margin: 3em auto;
+    padding: 0 1em;
+}
+
+.section {
+    margin-bottom: 3em;
+    padding: 2.5em;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+}
+
+.section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.section h2 {
+    color: #d32f2f;
+    font-size: 2rem;
+    margin-bottom: 1em;
+}
+
+.section img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-top: 1.5em;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    width: 80%;
+    max-width: 700px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    text-align: center;
+}
+
+.modal img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+/* สำหรับมือถือ: หน้าจอเล็กกว่า 768px */
+@media (max-width: 768px) {
+    .section {
+        margin-bottom: 2em; /* ลดระยะห่างระหว่าง section */
+        padding: 1.5em 1em; /* ลด padding */
+    }
+
+    .section h2 {
+        font-size: 1.5rem; /* ลดขนาดหัวข้อ */
+        margin-bottom: 0.8em;
+    }
+
+    .section p {
+        font-size: 1rem; /* ลดขนาดข้อความ */
+        line-height: 1.6; /* ปรับระยะห่างบรรทัด */
+    }
+
+    .section img {
+        width: 100%; /* ให้รูปภาพเต็มความกว้างของ container */
+        max-height: 250px; /* จำกัดความสูงของรูป */
+        object-fit: cover; /* ป้องกันการบิดเบี้ยวของรูป */
+        margin-top: 1em; /* เพิ่มระยะห่างระหว่างข้อความและรูปภาพ */
+    }
+}
+
+/* สำหรับมือถือ: หน้าจอเล็กกว่า 480px */
+@media (max-width: 480px) {
+    .section {
+        margin-bottom: 1.5em; /* ลดระยะห่างระหว่าง section อีก */
+        padding: 1em; /* ลด padding อีก */
+    }
+
+    .section h2 {
+        font-size: 1.2rem; /* ลดขนาดหัวข้ออีก */
+    }
+
+    .section p {
+        font-size: 0.9rem; /* ลดขนาดข้อความอีก */
+    }
+
+    .section img {
+        max-height: 200px; /* จำกัดความสูงของรูปเพิ่มเติม */
+    }
+
+    header h1 {
+        font-size: 2rem; /* ลดขนาดหัวข้อใน header */
+    }
+
+    header p {
+        font-size: 1rem; /* ลดขนาดข้อความใน header */
+    }
+}
+
+.modal .close {
+    position: absolute;
+    top: -30px;
+    right: 1px;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal .close:hover,
+.modal .close:focus {
+    color: #ff0000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Toggle Sound Button */
+#toggle-sound {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+#toggle-sound:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    transform: scale(1.1);
+}
+
+/* กล่องของขวัญ (แสดงเป็นรูปภาพ) */
+#gift-box {
+    width: 120px;
+    height: auto;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 300; /* ให้อยู่ด้านบนสุด */
+    transition: transform 0.3s ease-in-out;
+}
+
+#gift-box:hover {
+    transform: scale(1.1); /* ขยายเมื่อชี้เมาส์ */
+}
+
+/* เอฟเฟกต์เบลอพื้นหลัง */
+#blur-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: 100; /* ให้อยู่ใต้การ์ด */
+    display: none;
+}
+
+/* การ์ดอวยพร */
+#greeting-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 350px;
+    height: 250px;
+    background: #fff;
+    border: 3px solid #f39c12;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 1000; /* การ์ดอยู่ด้านบนสุด */
+    opacity: 0; /* ซ่อนเริ่มต้น */
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+#greeting-card.hidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
+}
+
+#greeting-card:not(.hidden) {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+#greeting-text {
+    font-size: 20px;
+    color: #333;
+}
+
+/* เอฟเฟกต์พื้นหลังเบลอ */
+#blur-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: 100; /* พื้นหลังอยู่ใต้การ์ด */
+    display: none; /* ซ่อนเริ่มต้น */
+}
+
+/* เอฟเฟกต์หิมะ */
+#snow-effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Snow_flake_icon.svg/512px-Snow_flake_icon.svg.png');
+    background-size: 20px;
+    background-repeat: repeat;
+    animation: snow-fall 5s linear infinite;
+    z-index: 200; /* อยู่ใต้การ์ด */
+}
+
+@keyframes snow-fall {
+    from {
+        background-position: 0 -200px;
+    }
+    to {
+        background-position: 0 200px;
+    }
+}
