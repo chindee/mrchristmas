@@ -111,10 +111,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // เปลี่ยนคำอวยพรเป็นรูปภาพแบบสุ่ม
     const images = [
-        "/image/c1.png",
-        "/image/c1.png",
-        "/image/c1.png",
-        "/image/c1.png"
+        "/mrchristmas/image/c1.png",
+        "/mrchristmas/image/c2.png",
+        "/mrchristmas/image/c3.png",
+        "/mrchristmas/image/c4.png",
+        "/mrchristmas/image/c5.png",
+        "/mrchristmas/image/c6.png",
+        "/mrchristmas/image/c7.png" 
     ];
 
     // อ้างอิงองค์ประกอบ
