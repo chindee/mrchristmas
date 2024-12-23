@@ -66,15 +66,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const bgMusic = document.querySelector("#bg-music");
 
     if (bgMusic && toggleSoundButton) {
-        // เริ่มต้นปุ่มเสียง
         toggleSoundButton.textContent = "🔊";
-        
+
         toggleSoundButton.addEventListener("click", () => {
             if (bgMusic.paused) {
-                bgMusic.play().catch((error) => {
+                bgMusic.play().then(() => {
+                    toggleSoundButton.textContent = "🔊";
+                }).catch(error => {
                     console.log("ไม่สามารถเล่นเสียงได้:", error);
                 });
-                toggleSoundButton.textContent = "🔊";
             } else {
                 bgMusic.pause();
                 toggleSoundButton.textContent = "🔇";
