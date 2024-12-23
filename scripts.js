@@ -61,29 +61,28 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.target === modal) modal.style.display = "none";
     });
 
-    // เสียงพื้นหลัง
+document.addEventListener("DOMContentLoaded", () => { 
     const toggleSoundButton = document.querySelector("#toggle-sound");
     const bgMusic = document.querySelector("#bg-music");
-    let isMuted = false;
 
-    toggleSoundButton?.addEventListener("click", () => {
-        if (!bgMusic) return;
-
-        isMuted = !isMuted;
-        bgMusic.muted = isMuted;
-
-        if (!bgMusic.paused && !isMuted) {
-            bgMusic.play();
-        }
-
-        toggleSoundButton.textContent = isMuted ? "🔇" : "🔊";
-    });
-
-    if (bgMusic) {
-        bgMusic.play().catch((error) => {
-            console.log("การเล่นเสียงถูกบล็อกโดยเบราว์เซอร์:", error);
+    if (bgMusic && toggleSoundButton) {
+        // เริ่มต้นปุ่มเสียง
+        toggleSoundButton.textContent = "🔊";
+        
+        toggleSoundButton.addEventListener("click", () => {
+            if (bgMusic.paused) {
+                bgMusic.play().catch((error) => {
+                    console.log("ไม่สามารถเล่นเสียงได้:", error);
+                });
+                toggleSoundButton.textContent = "🔊";
+            } else {
+                bgMusic.pause();
+                toggleSoundButton.textContent = "🔇";
+            }
         });
     }
+});
+
 
     // Countdown
     const countdownElement = document.querySelector(".countdown");
